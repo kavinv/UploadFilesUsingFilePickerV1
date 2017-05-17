@@ -2,33 +2,45 @@ let filepicker;
 class Save {
     url: any;
     apiKey: string;
+    whereToSave: string;
 
-
-    constructor(key: string, urlCons: string) {
+    constructor(key: string, urlCons: string, whereToSaveCons: string) {
         this.url = urlCons;
         this.apiKey = key;
+        this.whereToSave = whereToSaveCons;
 
     }
 
     dataSet() {
 
         filepicker.setKey(this.apiKey);
-        filepicker.exportFile(this.url, {suggestedFileName: 'newFile5'}, Blob, () => {
-            alert("Sorry there was an error, please try later")
+
+
+        let fileName = this.url.substr((this.url.lastIndexOf('/'))+1);
+
+        filepicker.exportFile(this.url, {
+            service: this.whereToSave,
+            suggestedFilename: fileName
+        }, onSuccess, () => {
+            alert("Sorry there was an error, please try later");
         });
-        function Blob() {
-            alert("Your file was saved successfully!")
+
+        function onSuccess(Blob) {
+
+            console.log(JSON.stringify(Blob));
+            alert("The file was saved successfully. This is the temporary file location : " + Blob.url);
+
         }
 
     }
 }
 
 
-function savingNow() {
-    let a2 = (<HTMLInputElement> document.getElementById('url')).value;
-    let a1 = new Save("AP9mmX5AFRgqtKpSzcr8Lz", a2);
-    return a1.dataSet();
-
+function savingNow(destinationToSave: any): any {
+    let urlData = (<HTMLInputElement> document.getElementById('url')).value;
+    let destination = destinationToSave.value;
+    let ds = new Save("AP9mmX5AFRgqtKpSzcr8Lz", urlData, destination);
+    return ds.dataSet();
 
 }
 

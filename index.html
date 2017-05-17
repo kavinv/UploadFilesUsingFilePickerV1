@@ -5,45 +5,46 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://api.filepicker.io/v1/filepicker.js"></script>
-    <script src="js/filepicker_page.js?version=7"></script>
-    
-    <script sync src="https://api.filepicker.io/v1/filepicker_debug.js"></script>
+    <script src="js/filepicker_page.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 
 <body>
-    <div class="container">
-        <h2>Save Data </h2>
-        <form class="form-group">
-            <div class="form-control">
-                <label class="form-control-label" for="inputUrl">Enter the file location</label>
-                <div class="form-control-label">
-                    <input type="text" id="url" required type="url" pattern="https?://.+">
-                </div>
-
-                <label class="form-control-label" for="inputUrl">Select Destination</label>
-                <div class="dropdown">
-
-                    <select name="service" id="service" required>
-            <option value="DROPBOX">Dropbox</option>
-            <option value="GOOGLE_DRIVE">Google Drive</option>
-            <option value="SKYDRIVE">Microsoft OneDrive</option>
-            <option value="BOX">Box.net</option>
-            <option value="EVERNOTE">Evernote</option>
-            <option value="FTP">FTP Server</option>
-            </select>
-                </div>
-
+<div class="container">
+    <h2>Save Data </h2>
+    <form class="form-group">
+        <div class="form-control">
+            <label class="form-control-label" for="url">Enter the file location</label>
+            <div class="form-control-label">
+                <label for="url"></label><input type="text" id="url" pattern="https?://.+">
             </div>
-            <div class="control-group">
-                <a href="#" onclick="savingNow();return false;" class="btn btn-inverse"><i class="icon-white icon-upload"></i> Upload File</a>
+
+            <label class="form-control-label" for="service">Select Destination</label>
+            <div class="dropdown">
+
+                <label for="service"></label><select name="service" id="service" required>
+                    <option value="DROPBOX">Dropbox</option>
+                    <option value="GOOGLE_DRIVE">Google Drive</option>
+                    <option value="SKYDRIVE">Microsoft OneDrive</option>
+                    <option value="BOX">Box</option>
+                    <option value="EVERNOTE">Evernote</option>
+                    <option value="FACEBOOK">Evernote</option>
+                    <option value="FLICKR">Evernote</option>
+                    <option value="FTP">FTP Server</option>
+                </select>
             </div>
-        </form>
+
+        </div>
+        <div class="control-group">
+            <a href="#" onclick="savingNow(service);return false;" class="btn btn-inverse"><i
+                    class="icon-white icon-upload"></i> Upload File</a>
+        </div>
+    </form>
 
 
-    </div>
+</div>
 
 </body>
 
